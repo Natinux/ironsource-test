@@ -7,7 +7,7 @@
 - Node.js with NPM
 - gulp
     
-## Deploy Without Docker
+## Deploy
     npm install
     gulp build
 
