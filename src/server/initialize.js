@@ -70,10 +70,10 @@ const middlwares = {
         app.use((req, res, next) => {
             res.api = entity => {
                 if(entity && entity instanceof HttpResponse){
-                    res.json({status:200, ...entity});
+                    res.json(Object.assign({status:200}, entity));
                 }
                 else{
-                    res.status(200).send({status:200})
+                    res.status(200).send({status:200});
                 }
             };
             next();

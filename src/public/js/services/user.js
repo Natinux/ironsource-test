@@ -8,12 +8,12 @@ export default class UserService extends BaseService{
      * @param username
      * @returns {username, email}
      */
-    async get(username){
+    get(username){
         let requst = new Request(`${this.baseUrl}/api/user/${username}`);
         return fetch(request).then(response => response.json());
     }
 
-    async saveUser(user){
+    saveUser(user){
         let request = new Request(`${this.baseUrl}/api/user`, {
             method: 'POST',
             headers: {
@@ -24,7 +24,7 @@ export default class UserService extends BaseService{
         return fetch(request).then(response => response.json());
     }
 
-    async loadUsers(){
+    loadUsers(){
         let request = new Request(`${this.baseUrl}/api/user`);
         return fetch(request).then(response => response.json());
     }

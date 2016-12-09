@@ -12,8 +12,12 @@ describe('user agent test', ()=> {
 
     before(function(done) {
         appPromise.then(() => {
-            UserAgent = require('../../agents/user');
-            done();
+           try{
+                UserAgent = require('../../agents/user');
+                done();
+            }catch (err){
+                done(err);
+            }
         }).catch(err => done(err));
 
     });
