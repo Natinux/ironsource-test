@@ -29,26 +29,9 @@ export default new Promise((resolve, reject) => {
 
     let appInit = require('../initialize'); // loading app with all its imports
 
-    // Create HTTP server
-    LogHelper.info('Starting HTTP server...');
-    let server = http.createServer(app);
-    let port = process.env.PORT || config.get('http:port') || 80;
-
-    server.on('error', e => {
-        if (e.code == 'EADDRINUSE') {
-            LogHelper.info('Address in use, retrying...');
-            return setTimeout(() => {
-                server.close();
-                server.listen(port);
-            }, 1000);
-        }
-    });
-
-    appInit(app).then(ok => {
-        server.listen(port, () => {
-            LogHelper.info('HTTP Server started at port ' + server.address().port);
-            resolve(app);
-        });
+    appInit(app).then(() => {
+        LogHelper.info('Application ready');
+        resolve(app);
     }).catch(err => {
         reject(err);
     });

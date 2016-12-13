@@ -1,0 +1,12 @@
+version: '2'
+services:
+  ironsource-test:
+    image: ironsource/test:latest
+    entrypoint:
+        - npm
+        - run
+        - config-then-test
+    ports:
+      - 80:80
+    environment:
+        ENV_NAME: "prod"

@@ -6,8 +6,24 @@
 
 - Node.js with NPM
 - gulp
+- Docker
+- Docker Compose
     
+
 ## Deploy
+
+    npm run build-docker
+    npm run test-docker
+    npm run start-docker
+    
+note: to run test on verbose mode:
+
+    npm run test-docker -- --verbose
+    
+## Stop
+    npm run stop-docker
+    
+## Deploy Without Docker
     npm install
     gulp build
 

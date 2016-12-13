@@ -4,15 +4,19 @@ import yargs from 'yargs';
 import glob from 'glob';
 import LogHelper from '../helpers/log';
 
-process.env.LOG_LEVEL = "fatal";
+const argv = yargs.argv;
+
+process.env.LOG_LEVEL = !!argv.verbose ? "debug" : "fatal";
 process.env.TEST_MODE = true;
 
 async function main() {
 
-    LogHelper.info('Starting mocha runner');
-
     try{
-        let argv = yargs.argv;
+        LogHelper.info('Loading and starting application');
+        await require('./app');
+
+        LogHelper.info('Starting mocha runner');
+
         let mocha = new Mocha({
             timeout: 5000,
             fullTrace: true

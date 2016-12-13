@@ -10,5 +10,11 @@ export default (gulp, plugins, options) => {
         .task('dev', ['build'], cb => {
             runSequence('babel-watch', cb);
         })
+        .task('dockerBuildImage', function(callback){
+            runSequence('clean-dist', 'create-folders', 'babel', 'api-docs', 'browserify', callback);
+        })
+        .task('dockerBuildContainer', function(callback){
+            runSequence('config', callback);
+        })
         .task('default', ['build']);
 }

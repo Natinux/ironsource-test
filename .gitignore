@@ -15,3 +15,4 @@ src/public/docs/api_project.js
 src/public/docs/api_project.json
 usersdb/
 usersdb_test/
+/.project

@@ -1,26 +1,13 @@
 import chai from 'chai';
-import appPromise from '../app';
 import {before} from "mocha";
 import {describe} from "mocha";
+import UserAgent from '../../agents/user';
 
 const assert = chai.assert;
 const expect = chai.expect;
 chai.should();
 
 describe('user agent test', ()=> {
-    let UserAgent = null;
-
-    before(function(done) {
-        appPromise.then(() => {
-           try{
-                UserAgent = require('../../agents/user');
-                done();
-            }catch (err){
-                done(err);
-            }
-        }).catch(err => done(err));
-
-    });
 
     it('add user', async () => {
         let ok = await UserAgent.saveUser({

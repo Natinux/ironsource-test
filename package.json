@@ -4,9 +4,15 @@
   "description": "test for ironSource",
   "main": "app.js",
   "scripts": {
-    "build": "watchify src/public/js/bootstrap.js -o dist/bundle.js -t [ babelify --presets [ react es2015 ] ]",
+    "build": "node node_modules/gulp/bin/gulp.js build",
+    "build-docker": "docker build -t ironsource/test -f ./assets/docker/dockerfile.yml .",
     "start": "cd ./dist/server && node app.js",
-    "test": "node dist/server/test/mocha-runner.js dist/server/test/**/*.spec.js"
+    "start-docker": "docker-compose -f ./assets/docker/compose/run.yml up",
+    "stop-docker": "docker-compose -f ./assets/docker/compose/run.yml down",
+    "test": "node dist/server/test/mocha-runner.js dist/server/test/**/*.spec.js",
+    "test-docker": "docker-compose -f ./assets/docker/compose/test.yml run ironsource-test",
+    "config-then-test": "gulp config && npm test",
+    "config-then-run": "gulp config && npm start"
   },
   "author": "Nati Nazarov",
   "license": "ISC",
